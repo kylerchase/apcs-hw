@@ -87,6 +87,15 @@ public class QuickSelect {
 				wall++;
 			}
 		}
+		for (int i = wall; i<R; i++) {
+			if (a[i] == a[R]) {
+				temp = a[wall];
+				a[wall] = a[i];
+				a[i] = temp;
+			//	System.out.println(a[wall]);
+				wall++;
+			}
+		}
 		temp = a[wall];
 		a[wall] = a[R];
 		a[R] = temp;
