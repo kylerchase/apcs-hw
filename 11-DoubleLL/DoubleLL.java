@@ -1,3 +1,5 @@
+//Kyler Chase and Chesley Tan
+
 import java.util.*;
 import java.io.*;
 
@@ -24,11 +26,16 @@ public class DoubleLL<E> {
 	}
 
 	private Node<E> current;
+	private Node<E> head;
 
 	public void insert(E d) {
 		Node<E> n = new Node<E> (d);
-		if (current==null)
+		if (current==null) {
 			current = n;
+			head = n;
+			n.setNext(n);
+			n.setPrev(n);
+		}
 		else {
 			n.prev = current.prev;
 			if (n.prev != null)
@@ -38,6 +45,32 @@ public class DoubleLL<E> {
 			current = n;
 		}
 	}
+
+	public E remove() {
+		if (current.getNext() == current && current.getPrev() == current)
+			current = null;
+		current.getNext().setPrev(current.getPrev());
+		current.getPrev().setNext(current.getNext());
+		E r = current.getData();	
+		current = current.getNext();
+		return r;
+	}
+
+	public void find(E t) {
+		if (current == null)
+			return;
+		if (head.getData() == t)
+			current = head;
+		Node<E> tmp = head.getNext();
+		while (tmp.getData() != t && tmp != head) {
+			tmp = tmp.getNext();
+		}
+		if (tmp != head)
+			current = tmp;
+	}
+
+			
+		
 
 	public E getCurrent() {
 		return current.getData();
@@ -56,11 +89,9 @@ public class DoubleLL<E> {
 	public String toString() {
 		if (current == null)
 			return "";
-		Node<E> tmp = current;
-		while (tmp.getPrev() != null)
-			tmp = tmp.getPrev();
-		String s = "";
-		while (tmp != null) {
+		Node<E> tmp = head.getNext();
+		String s = ""+head.getData();
+		while (tmp != head) {
 			s = s+tmp.getData()+"";
 			tmp = tmp.getNext();
 		}
@@ -81,8 +112,18 @@ public class DoubleLL<E> {
 		System.out.println(L.getCurrent());
 		L.forward();
 		System.out.println(L.getCurrent());
+		L.remove();
 		L.insert("inserted");
 		System.out.println(L);
+		System.out.println(L.getCurrent());
+		L.forward();
+		System.out.println(L.getCurrent());
+		L.back();
+		System.out.println(L.getCurrent());
+		L.find("three");
+		System.out.println(L.getCurrent());
+		
+		
 	}
 
 
