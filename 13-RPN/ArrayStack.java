@@ -32,7 +32,10 @@ public class ArrayStack {
 
 	public String pop() {
 		String s = nodes[top];
-		top++;
+		if (top == nodes.length-1)
+			nodes[top] = null;
+		else
+			top++;
 		return s;
 	}
 

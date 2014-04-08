@@ -10,7 +10,7 @@ public class RPN {
 		for (int i = 0; i<s.length(); i++) {
 			if (s.charAt(i) > 47 && s.charAt(i) < 58)
 				temp = temp + s.substring(i,i+1);
-			else if (s.charAt(i) == ' ' && temp != "") {
+			else if (s.charAt(i) == 32 && temp != "") {
 				as.push(temp);
 				temp = "";
 			}
