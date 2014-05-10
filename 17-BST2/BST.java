@@ -8,7 +8,7 @@ public class BST {
 		root = n;
 	}
 
-	public void insert(int x, Node n;) {
+	public void insert(int x, Node n) {
 		Node tmp = n;
 		Node next = n;
 		while (next != null) {
@@ -52,7 +52,7 @@ public class BST {
 			return Search2_help(x,n.getLeft());
 	}
 		
-	public void delete(int x) {
+	/*public void delete(int x) {
 		Node tmp = root;
 		Node r,l,n;
 		while (tmp != null) {
@@ -87,6 +87,15 @@ public class BST {
 	
 
 
+*/
+
+	public void traverse(Node n) {
+		if (n.getLeft() != null)
+			traverse(n.getLeft()) ;
+		System.out.println(n);
+		if (n.getRight() != null)
+			traverse(n.getRight());
+	}
 
 
 
